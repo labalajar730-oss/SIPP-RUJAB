@@ -605,7 +605,7 @@
  * Bentuknya sama (withSuccessHandler / withFailureHandler / nama fungsi),
  * tetapi memanggil web app Apps Script lewat fetch (POST) ke doPost.
  * ==================================================================== */
-var API_URL = 'https://script.google.com/macros/s/AKfycbzTiHw3dzHKBbSJlvD9P5-H7eTtkqyjyYTVOlc5AMvNKcpMAt1EJefnB7tt8dlY1rg/exec';   // contoh: https://script.google.com/macros/s/AKfy.../exec
+var API_URL = 'GANTI_DENGAN_URL_EXEC_SIPP_RUJAB';   // contoh: https://script.google.com/macros/s/AKfy.../exec
 
 (function () {
   var FUNGSI = ['getLoginContext', 'loginPetugas', 'loginAdmin', 'cekSesi', 'logoutPetugas',
@@ -1577,15 +1577,15 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbzTiHw3dzHKBbSJlvD9P5-H7e
     }).simpanSuratTugas(TOKEN, { nomor: nomor, bulan: bulan, tahun: tahun, regu: ST.regu, jadwal: ST.jadwal });
   }
 
-  // Foto diperkecil di browser (maks 1280px, JPEG) supaya unggahan ringan
+  // Foto diperkecil di browser (maks 1024px, JPEG) supaya unggahan ringan
   function compress(file, ok, fail) {
     var img = new Image(), u = URL.createObjectURL(file);
     img.onload = function () {
-      var s = Math.min(1, 1280 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+      var s = Math.min(1, 1024 / Math.max(img.width, img.height)), c = document.createElement('canvas');
       c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
       c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
       URL.revokeObjectURL(u);
-      ok(c.toDataURL('image/jpeg', 0.75));
+      ok(c.toDataURL('image/jpeg', 0.7));
     };
     img.onerror = function () { fail('Foto tidak dapat dibaca. Coba ambil ulang.'); };
     img.src = u;
